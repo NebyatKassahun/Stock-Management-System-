@@ -17,9 +17,9 @@ const Products: React.FC = () => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.category.toLowerCase().includes(searchTerm.toLowerCase());
-      
+
       const matchesCategory = filterCategory === 'all' || product.category === filterCategory;
-      
+
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -67,19 +67,19 @@ const Products: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      
+
       if (product) {
-        dispatch({ 
-          type: 'UPDATE_PRODUCT', 
-          payload: { ...formData, id: product.id } 
+        dispatch({
+          type: 'UPDATE_PRODUCT',
+          payload: { ...formData, id: product.id }
         });
       } else {
-        dispatch({ 
-          type: 'ADD_PRODUCT', 
-          payload: { ...formData, id: Date.now().toString() } 
+        dispatch({
+          type: 'ADD_PRODUCT',
+          payload: { ...formData, id: Date.now().toString() }
         });
       }
-      
+
       onClose();
     };
 
@@ -90,7 +90,7 @@ const Products: React.FC = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {product ? 'Edit Product' : 'Add New Product'}
             </h2>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -232,7 +232,7 @@ const Products: React.FC = () => {
               className="pl-12 pr-4 py-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <select
               value={filterCategory}
@@ -245,7 +245,7 @@ const Products: React.FC = () => {
                 </option>
               ))}
             </select>
-            
+
             <button className="flex items-center space-x-2 px-4 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
               <Filter className="w-4 h-4" />
               <span>Filter</span>
@@ -299,7 +299,7 @@ const Products: React.FC = () => {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th 
+                <th
                   className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => handleSort('name')}
                 >
@@ -310,7 +310,7 @@ const Products: React.FC = () => {
                     )}
                   </div>
                 </th>
-                <th 
+                <th
                   className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => handleSort('sku')}
                 >
@@ -321,7 +321,7 @@ const Products: React.FC = () => {
                     )}
                   </div>
                 </th>
-                <th 
+                <th
                   className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => handleSort('category')}
                 >
@@ -332,7 +332,7 @@ const Products: React.FC = () => {
                     )}
                   </div>
                 </th>
-                <th 
+                <th
                   className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => handleSort('price')}
                 >
@@ -343,7 +343,7 @@ const Products: React.FC = () => {
                     )}
                   </div>
                 </th>
-                <th 
+                <th
                   className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => handleSort('stock')}
                 >
@@ -436,11 +436,11 @@ const Products: React.FC = () => {
       {showAddModal && (
         <ProductModal onClose={() => setShowAddModal(false)} />
       )}
-      
+
       {editingProduct && (
-        <ProductModal 
-          product={editingProduct} 
-          onClose={() => setEditingProduct(null)} 
+        <ProductModal
+          product={editingProduct}
+          onClose={() => setEditingProduct(null)}
         />
       )}
     </div>
